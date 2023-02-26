@@ -1,26 +1,55 @@
-import Login from "./Login";
+"use client";
+import { Card, Grid, Text } from "@nextui-org/react";
 
-async function getPosts() {
-  const res = await fetch(`${process.env.BASE_URL}/api/getPosts`, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    console.log(res);
-  }
-  return res.json();
-}
-
-export default async function Home() {
-  const data: { id: number; title: string }[] = await getPosts();
-  console.log(data);
+export default function Home() {
   return (
     <main>
-      <h1>Test website</h1>
-      {data.map((post) => (
-        <h2 key={post.id}>{post.title}</h2>
-      ))}
-      <h2>Login test:</h2>
-      <Login />
+      <h1>Home page</h1>
+
+      <Grid.Container gap={2} justify="center">
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>Next.js 13</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>React 18</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>Database</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>UI Components</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>Authentication</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+        <Grid xs={4}>
+          <Card>
+            <Card.Body>
+              <Text>Subscriptions</Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+      </Grid.Container>
     </main>
   );
 }

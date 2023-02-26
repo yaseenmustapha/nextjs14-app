@@ -1,4 +1,5 @@
 "use client";
+import { NextUIProvider } from "@nextui-org/react";
 import { SessionProvider } from "next-auth/react";
 
 export default function ProvidersWrapper({
@@ -6,5 +7,9 @@ export default function ProvidersWrapper({
 }: {
   children: React.ReactNode;
 }) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider>
+      <NextUIProvider>{children}</NextUIProvider>
+    </SessionProvider>
+  );
 }
