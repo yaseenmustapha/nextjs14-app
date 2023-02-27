@@ -1,16 +1,22 @@
 "use client";
 import {
+  Button,
   Card,
   Container,
   Grid,
+  Row,
   Spacer,
   Text,
+  User,
   useTheme,
 } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Home() {
   const { isDark } = useTheme();
+  const { data: session } = useSession();
+  const { user } = session || {};
 
   const cardItems = [
     {
@@ -66,7 +72,8 @@ export default function Home() {
     },
     {
       title: "UI Components",
-      description: "UI components built with NextUI.",
+      description:
+        "UI components built with NextUI. Dark mode using next-themes.",
       footer: "NextUI documentation",
       url: "https://nextui.org/docs/guide/getting-started",
       svg: (
@@ -98,7 +105,8 @@ export default function Home() {
     },
     {
       title: "Authentication",
-      description: "OAuth 2.0 authentication using NextAuth.js.",
+      description:
+        "OAuth 2.0 authentication through Google, GitHub, and Discord using NextAuth.js.",
       footer: "NextAuth.js documentation",
       url: "https://next-auth.js.org/getting-started/introduction",
       svg: (
@@ -117,7 +125,8 @@ export default function Home() {
     },
     {
       title: "Payments",
-      description: "Free and paid subscriptions using Stripe.",
+      description:
+        "Free and paid subscriptions using Stripe unlocking features for users.",
       footer: "Stripe Payment API documentation",
       url: "https://stripe.com/docs/payments",
       svg: (
@@ -138,16 +147,58 @@ export default function Home() {
   return (
     <main>
       <Container>
-        <Text
-          h1
-          size={60}
-          css={{
-            textGradient: "45deg, $blue600 -20%, $pink600 50%",
-          }}
-          weight="bold"
-        >
-          Next.js 13 Demo Application
-        </Text>
+        <Spacer />
+        <Container>
+          <Text
+            h1
+            size={60}
+            css={{
+              lineHeight: "1.1",
+              textGradient: "45deg, $blue600 -20%, $pink600 50%",
+            }}
+            weight="bold"
+          >
+            Welcome {user && ", " + user.name}!
+          </Text>
+          <Text
+            h1
+            size={40}
+            css={{
+              lineHeight: "1.2",
+            }}
+            weight="medium"
+          >
+            This is an app built to showcase the capabilities of Next.js 13.
+          </Text>
+          <Spacer y={1} />
+          <Row wrap="wrap">
+            <Button
+              color="gradient"
+              ghost
+              style={{ marginBottom: 12 }}
+              onPress={() => window.open("https://github.com/yaseenmustapha")}
+            >
+              Source Code on GitHub
+            </Button>
+
+            <User
+              src="https://avatars.githubusercontent.com/u/26501999"
+              name="Yaseen Mustapha"
+              pointer
+              zoomed
+              onClick={() => window.open("https://github.com/yaseenmustapha")}
+            >
+              <User.Link href="https://github.com/yaseenmustapha">
+                github.com/yaseenmustapha
+              </User.Link>
+            </User>
+          </Row>
+
+          <Spacer y={2} />
+          <Text h1 size={40} weight="medium">
+            Features
+          </Text>
+        </Container>
 
         <Grid.Container gap={2} justify="center">
           {cardItems.map((item, i) => (
