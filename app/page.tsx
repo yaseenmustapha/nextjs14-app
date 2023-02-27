@@ -158,7 +158,7 @@ export default function Home() {
             }}
             weight="bold"
           >
-            Welcome {user && ", " + user.name}!
+            Welcome{user && ", " + user.name}!
           </Text>
           <Text
             h1
@@ -176,7 +176,7 @@ export default function Home() {
               color="gradient"
               ghost
               style={{ marginBottom: 12 }}
-              onPress={() => window.open("https://github.com/yaseenmustapha")}
+              onPress={() => window.open("https://github.com/yaseenmustapha/nextjs-13-demo-app")}
             >
               Source Code on GitHub
             </Button>
