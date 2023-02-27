@@ -19,7 +19,7 @@ export default function Feed({
       <Container>
         <Header />
         <AddPost />
-        {data.map((post) => (
+        {data?.map((post) => (
           <Post
             key={post.id}
             id={post.id}
