@@ -4,9 +4,7 @@ async function getPosts() {
   const res = await fetch(`${process.env.BASE_URL}/api/getPosts`, {
     cache: "no-store",
   });
-  if (!res.ok) {
-    console.log(res);
-  }
+  // console.log(res);
   return res.json();
 }
 
@@ -17,7 +15,7 @@ export default async function Posts() {
     user: { name: string; image: string };
     comments: [];
   }[] = await getPosts();
-  console.log(data);
+  // console.log(data);
   return (
     <main>
       <Feed data={data} />

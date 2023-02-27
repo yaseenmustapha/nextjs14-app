@@ -18,7 +18,7 @@ export default function AddPost(): JSX.Element {
         content: content,
       }),
     });
-    console.log(res);
+    // console.log(res);
     router.refresh();
   };
 
