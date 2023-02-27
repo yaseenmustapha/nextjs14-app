@@ -141,8 +141,8 @@ export default function Home() {
         </Text>
 
         <Grid.Container gap={2} justify="center">
-          {cardItems.map((item) => (
-            <Grid sm={4}>
+          {cardItems.map((item, i) => (
+            <Grid sm={4} key={i}>
               <Card css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}>
                 <Card.Header>
                   {item.svg}
