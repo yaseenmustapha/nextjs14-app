@@ -44,6 +44,8 @@ model User {
   emailVerified DateTime?
   image         String?
   posts         Post[]
+  comments      Comment[]
+  likes         Like[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -57,10 +59,31 @@ model VerificationToken {
 }
 
 model Post {
-  id        Int     @id @default(autoincrement())
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  content   String
+  published Boolean   @default(false)
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Like {
+  id     String @id @default(cuid())
+  postId String
+  userId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
   title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  String
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
 }

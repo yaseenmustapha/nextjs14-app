@@ -10,7 +10,6 @@ import {
   useTheme,
 } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
-import Image from "next/image";
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const SunIcon = () => {
