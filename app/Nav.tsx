@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import {
   Avatar,
   Button,
-  Link,
   Navbar,
   Switch,
   Text,
@@ -12,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
 import { useSelectedLayoutSegment } from "next/navigation";
+import Link from "next/link";
 
 const SunIcon = () => {
   return (
@@ -61,23 +61,31 @@ export default function Nav() {
         </Text>
       </Navbar.Brand>
       <Navbar.Content hideIn="xs">
-        <Navbar.Link isActive={!segment} href="/">
-          Home
-        </Navbar.Link>
-        <Navbar.Link isActive={segment === "posts"} href="/posts">
-          Feed
-        </Navbar.Link>
-        <Navbar.Link isActive={segment === "subscribe"} href="/subscribe">
-          Subscribe
-        </Navbar.Link>
+        <Navbar.Item isActive={!segment}>
+          <Link style={{ color: "inherit" }} href="/">
+            Home
+          </Link>
+        </Navbar.Item>
+        <Navbar.Item isActive={segment === "posts"}>
+          <Link style={{ color: "inherit" }} href="/posts">
+            Feed
+          </Link>
+        </Navbar.Item>
+        <Navbar.Item isActive={segment === "subscribe"}>
+          <Link style={{ color: "inherit" }} href="/subscribe">
+            Subscribe
+          </Link>
+        </Navbar.Item>
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Collapse>
           <Navbar.CollapseItem>
             <Link
               color="inherit"
-              css={{
+              style={{
                 minWidth: "100%",
+                color: "white",
+                fontWeight: !segment ? "bold" : "normal",
               }}
               href="/"
             >
@@ -87,8 +95,10 @@ export default function Nav() {
           <Navbar.CollapseItem>
             <Link
               color="inherit"
-              css={{
+              style={{
                 minWidth: "100%",
+                color: "white",
+                fontWeight: segment === "posts" ? "bold" : "normal",
               }}
               href="/posts"
             >
@@ -98,8 +108,10 @@ export default function Nav() {
           <Navbar.CollapseItem>
             <Link
               color="inherit"
-              css={{
+              style={{
                 minWidth: "100%",
+                color: "white",
+                fontWeight: segment === "subscribe" ? "bold" : "normal",
               }}
               href="/subscribe"
             >
