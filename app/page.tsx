@@ -71,9 +71,9 @@ export default function Home() {
       ),
     },
     {
-      title: "UI Components",
+      title: "Components",
       description:
-        "UI components built with NextUI. Dark mode using next-themes.",
+        "UI components built with NextUI. Dark mode implemented using next-themes.",
       footer: "NextUI documentation",
       url: "https://nextui.org/docs/guide/getting-started",
       svg: (
@@ -148,7 +148,7 @@ export default function Home() {
     <main>
       <Container>
         <Spacer />
-        <Container>
+        <Container gap={0}>
           <Text
             h1
             size={60}
@@ -174,9 +174,14 @@ export default function Home() {
           <Row wrap="wrap">
             <Button
               color="gradient"
+              shadow
               ghost
               style={{ marginBottom: 12 }}
-              onPress={() => window.open("https://github.com/yaseenmustapha/nextjs-13-demo-app")}
+              onPress={() =>
+                window.open(
+                  "https://github.com/yaseenmustapha/nextjs-13-demo-app"
+                )
+              }
             >
               Source Code on GitHub
             </Button>
@@ -195,7 +200,8 @@ export default function Home() {
           </Row>
 
           <Spacer y={2} />
-          <Text h1 size={40} weight="medium">
+
+          <Text h1 size={40} weight="medium" b style={{paddingLeft: 12}}>
             Features
           </Text>
         </Container>

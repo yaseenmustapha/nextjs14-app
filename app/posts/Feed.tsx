@@ -1,5 +1,5 @@
 "use client";
-import { Container } from "@nextui-org/react";
+import { Container, Grid, Row, Spacer } from "@nextui-org/react";
 import AddPost from "./AddPost";
 import Header from "./Header";
 import Post from "./Post";
@@ -16,9 +16,15 @@ export default function Feed({
 }) {
   return (
     <main>
-      <Container>
-        <Header />
-        <AddPost />
+      <Container display="flex" alignItems="center" xs>
+        <Spacer />
+        <Row>
+          <Header />
+        </Row>
+        <Row>
+          <AddPost />
+        </Row>
+
         {data?.map((post) => (
           <Post
             key={post.id}

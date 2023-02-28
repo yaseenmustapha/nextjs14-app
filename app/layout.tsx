@@ -2,7 +2,7 @@ import ProvidersWrapper from "./ProvidersWrapper";
 import Nav from "./Nav";
 
 export const metadata = {
-  title: "Next.js Demo App",
+  title: "Next.js 13 Demo App",
   description: "Created by Yaseen Mustapha",
 };
 

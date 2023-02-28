@@ -43,7 +43,7 @@ export default function Nav() {
   const { isDark } = useTheme();
 
   return (
-    <Navbar>
+    <Navbar variant="sticky">
       <Navbar.Brand>
         <Navbar.Toggle
           aria-label="toggle navigation"

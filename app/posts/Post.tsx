@@ -16,7 +16,7 @@ export default function Post({
   comments: [];
 }) {
   return (
-    <><Card css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}>
+    <><Card css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }} variant="bordered">
       <Card.Header>
         <Avatar src={avatar} />
         <Spacer x={0.5} />
