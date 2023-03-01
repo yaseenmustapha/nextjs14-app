@@ -13,6 +13,7 @@ export default async function Posts() {
     id: string;
     content: string;
     user: { name: string; image: string };
+    createdAt: string;
     comments: [];
   }[] = await getPosts();
   // console.log(data);

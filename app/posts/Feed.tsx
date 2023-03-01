@@ -11,6 +11,7 @@ export default function Feed({
     id: string;
     content: string;
     user: { name: string; image: string };
+    createdAt: string;
     comments: [];
   }[];
 }) {
@@ -31,6 +32,7 @@ export default function Feed({
             id={post.id}
             name={post.user.name}
             avatar={post.user.image}
+            createdAt={post.createdAt}
             content={post.content}
             comments={post.comments}
           />
