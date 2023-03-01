@@ -1,38 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is an app built to showcase the capabilities of [Next.js 13](https://beta.nextjs.org/docs).
 
-## Getting Started
+Live demo is up at [nextjs13.app](https://www.nextjs13.app)
 
-First, run the development server:
+> **Warning**
+> This app is a work in progress. Site may be unstable.
+
+![Home page](https://user-images.githubusercontent.com/26501999/222239773-51521fee-6021-48ba-a2cc-5109f762bf8c.png)
+
+## Features
+
+- Using new **Next.js 13 Beta**
+- New `/app` dir,
+- Routing, Layouts, Nested Layouts and Layout Groups
+- Data Fetching, Caching and Mutation
+- Uses client and server components from **React 18**
+- API Routes
+- Live social media feed with likes, comments, and profanity filter
+- OAuth 2.0 Authentication through Google, GitHub, and Discord using **NextAuth.js**
+- ORM using **Prisma**
+- PostgreSQL Database on **Railway**
+- UI Components built using **NextUI**
+- Dark mode using **next-themes**
+- Payments using **Stripe**
+- Written in **TypeScript**
+
+## Run locally
+1. Install dependencies
+
+```bash
+npm install
+```
+2. Copy `.env.example` to `.env.local` and update variables:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
