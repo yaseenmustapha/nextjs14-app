@@ -18,7 +18,7 @@ export default function Feed({
   return (
     <main>
       <Container display="flex" alignItems="center" xs>
-        <Spacer />
+        <Spacer y={0.5} />
         <Row>
           <Header />
         </Row>

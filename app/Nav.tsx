@@ -81,10 +81,9 @@ export default function Nav() {
         <Navbar.Collapse>
           <Navbar.CollapseItem>
             <Link
-              color="inherit"
               style={{
                 minWidth: "100%",
-                color: "white",
+                color: "inherit",
                 fontWeight: !segment ? "bold" : "normal",
               }}
               href="/"
@@ -94,10 +93,9 @@ export default function Nav() {
           </Navbar.CollapseItem>
           <Navbar.CollapseItem>
             <Link
-              color="inherit"
               style={{
                 minWidth: "100%",
-                color: "white",
+                color: "inherit",
                 fontWeight: segment === "posts" ? "bold" : "normal",
               }}
               href="/posts"
@@ -107,10 +105,9 @@ export default function Nav() {
           </Navbar.CollapseItem>
           <Navbar.CollapseItem>
             <Link
-              color="inherit"
               style={{
                 minWidth: "100%",
-                color: "white",
+                color: "inherit",
                 fontWeight: segment === "subscribe" ? "bold" : "normal",
               }}
               href="/subscribe"
