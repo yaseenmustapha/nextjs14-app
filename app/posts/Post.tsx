@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { formatDate } from "@/lib/utils";
-import { Avatar, Card, Grid, Spacer, Text } from "@nextui-org/react";
+import { Avatar, Card, Grid, Loading, Spacer, Text } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -48,10 +48,12 @@ export default function Post({
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
-  const currentUserLiked = likes.some((like) => like.userId === user?.id);
+  const currentUserLiked = session && likes.some((like) => like.userId === user?.id) || false;
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const addLike = async (id: string) => {
+    setLoading(true);
     try {
       const res = await fetch("/api/addLike", {
         method: "POST",
@@ -68,6 +70,7 @@ export default function Post({
     } catch {
       // console.log("Error liking post");
     }
+    setLoading(false);
   };
 
   return (
@@ -94,9 +97,18 @@ export default function Post({
         <Card.Footer>
           <Text css={{ color: "$accents8" }}>{comments.length} comments</Text>
           <Spacer x={0.5} />
-          <HeartIcon fill={currentUserLiked} onClick={() => addLike(id)} />
+          {loading ? (
+            <Loading size="sm" color="error" />
+          ) : (
+            <HeartIcon
+              fill={currentUserLiked}
+              onClick={() => session && addLike(id)}
+            />
+          )}
           <Spacer x={0.1} />
-          <Text color={currentUserLiked ? "#F31260" : "#9ba1a6"}>{likes.length}</Text>
+          <Text color={currentUserLiked ? "#F31260" : "#9ba1a6"}>
+            {likes.length}
+          </Text>
         </Card.Footer>
       </Card>
       <Spacer y={1} />
