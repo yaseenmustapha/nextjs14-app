@@ -14,6 +14,7 @@ export default async function Posts() {
     content: string;
     user: { name: string; image: string };
     createdAt: string;
+    likes: [];
     comments: [];
   }[] = await getPosts();
   // console.log(data);
