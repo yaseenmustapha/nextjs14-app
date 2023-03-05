@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import { Avatar, Card, Grid, Loading, Spacer, Text } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 const HeartIcon = ({ fill, onClick }: { fill: boolean; onClick: Function }) => {
   const [hover, setHover] = useState(false);
@@ -44,11 +45,17 @@ export default function Post({
   createdAt: string;
   content: string;
   likes: { id: string; postId: string; userId: string }[];
-  comments: [];
+  comments: {
+    id: string;
+    user: { name: string; image: string };
+    createdAt: string;
+    content: string;
+  }[];
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
-  const currentUserLiked = session && likes.some((like) => like.userId === user?.id) || false;
+  const currentUserLiked =
+    (session && likes.some((like) => like.userId === user?.id)) || false;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -95,7 +102,9 @@ export default function Post({
           <Text>{content}</Text>
         </Card.Body>
         <Card.Footer>
-          <Text css={{ color: "$accents8" }}>{comments.length} comments</Text>
+          <Link href={`/posts/${id}`}>
+            <Text css={{ color: "$accents8" }}>{comments.length} comments</Text>
+          </Link>
           <Spacer x={0.5} />
           {loading ? (
             <Loading size="sm" color="error" />
