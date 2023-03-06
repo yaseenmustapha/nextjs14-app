@@ -5,7 +5,7 @@ Live demo is up at [nextjs13.app](https://www.nextjs13.app)
 > **Warning**
 > This app is a work in progress. Site may be unstable.
 
-![Home page](https://user-images.githubusercontent.com/26501999/222239773-51521fee-6021-48ba-a2cc-5109f762bf8c.png)
+![Home and Feed pages](https://user-images.githubusercontent.com/26501999/223235925-b2b6c599-cc43-436c-9cd1-f05cfcc454f2.jpg)
 
 ## Features
 
