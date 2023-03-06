@@ -103,7 +103,7 @@ export default function Post({
         </Card.Body>
         <Card.Footer>
           <Link href={`/posts/${id}`}>
-            <Text css={{ color: "$accents8" }}>{comments.length} comments</Text>
+            <Text css={{ color: "$accents8" }}>{comments.length} {comments.length === 1 ? "comment" : "comments"}</Text>
           </Link>
           <Spacer x={0.5} />
           {loading ? (
