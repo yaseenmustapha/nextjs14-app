@@ -46,4 +46,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## License
 
-Licensed under the [MIT license](https://github.com/yaseenmustapha/nextjs13-app/blob/main/LICENSE.md).
+Licensed under the [GNU Affero General Public License v3.0](https://github.com/yaseenmustapha/nextjs13-app/blob/main/LICENSE).
