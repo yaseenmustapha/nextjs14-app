@@ -1,20 +1,25 @@
 "use client";
 import { formatDate } from "@/lib/utils";
 import { Avatar, Card, Grid, Spacer, Text } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 export default function Comment({
+  userId,
   id,
   name,
   avatar,
   createdAt,
   content,
 }: {
+  userId: string;
   id: string;
   name: string;
   avatar: string;
   createdAt: string;
   content: string;
 }) {
+  const { data: session } = useSession();
+  const { user } = session || {};
   return (
     <>
       <Card
@@ -22,7 +27,11 @@ export default function Comment({
         variant="bordered"
       >
         <Card.Header>
-          <Avatar src={avatar} />
+          <Avatar
+            src={avatar}
+            color="gradient"
+            bordered={userId === user?.id}
+          />
           <Spacer x={0.5} />
           <Grid.Container css={{ pl: "$6" }}>
             <Grid xs={12}>

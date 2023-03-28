@@ -16,7 +16,7 @@ export default function Thread({
     likes: [];
     comments: {
       id: string;
-      user: { name: string; image: string };
+      user: { id: string; name: string; image: string };
       createdAt: string;
       content: string;
     }[];
@@ -43,6 +43,7 @@ export default function Thread({
       {post.comments?.map((comment) => (
         <Comment
           key={comment.id}
+          userId={comment.user.id}
           id={comment.id}
           name={comment.user.name}
           avatar={comment.user.image}
