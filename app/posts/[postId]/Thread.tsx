@@ -11,7 +11,7 @@ export default function Thread({
   post: {
     id: string;
     content: string;
-    user: { name: string; image: string };
+    user: { id: string; name: string; image: string };
     createdAt: string;
     likes: [];
     comments: {
@@ -30,6 +30,7 @@ export default function Thread({
       </Row>
       <Post
         key={post.id}
+        userId={post.user.id}
         id={post.id}
         name={post.user.name}
         avatar={post.user.image}

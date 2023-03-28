@@ -10,7 +10,7 @@ export default function Feed({
   data: {
     id: string;
     content: string;
-    user: { name: string; image: string };
+    user: { id: string; name: string; image: string };
     createdAt: string;
     likes: [];
     comments: [];
@@ -31,6 +31,7 @@ export default function Feed({
           <Post
             key={post.id}
             id={post.id}
+            userId={post.user.id}
             name={post.user.name}
             avatar={post.user.image}
             createdAt={post.createdAt}
