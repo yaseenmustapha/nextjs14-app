@@ -104,7 +104,6 @@ export default function Post({
 
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
   };
 
   const addLike = async (id: string) => {
