@@ -12,7 +12,7 @@ export default async function Posts() {
   const data: {
     id: string;
     content: string;
-    user: { name: string; image: string };
+    user: { id: string; name: string; image: string };
     createdAt: string;
     likes: [];
     comments: [];
