@@ -62,7 +62,7 @@ export default function Nav() {
         </Text>
       </Navbar.Brand>
       <Navbar.Content hideIn="xs">
-        <Navbar.Item isActive={!segment}>
+        <Navbar.Item isActive={segment === "(home)"}>
           <Link style={{ color: "inherit" }} href="/">
             Home
           </Link>
@@ -85,7 +85,7 @@ export default function Nav() {
               style={{
                 minWidth: "100%",
                 color: "inherit",
-                fontWeight: !segment ? "bold" : "normal",
+                fontWeight: segment === "(home)" ? "bold" : "normal",
               }}
               href="/"
             >
