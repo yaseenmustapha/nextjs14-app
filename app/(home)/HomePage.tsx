@@ -13,7 +13,7 @@ import {
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-export default function Home() {
+export default function HomePage({ numStars }: { numStars: string }) {
   const { isDark } = useTheme();
   const { data: session } = useSession();
   const { user } = session || {};
@@ -145,89 +145,104 @@ export default function Home() {
   ];
 
   return (
-    <main>
-      <Container>
-        <Spacer />
-        <Container gap={0}>
-          <Text
-            h1
-            size={60}
-            css={{
-              lineHeight: "1.1",
-              textGradient: "45deg, $blue600 -20%, $pink600 50%",
-            }}
-            weight="bold"
+    <Container>
+      <Spacer />
+      <Container gap={0}>
+        <Text
+          h1
+          size={60}
+          css={{
+            lineHeight: "1.1",
+            textGradient: "45deg, $blue600 -20%, $pink600 50%",
+          }}
+          weight="bold"
+        >
+          Welcome{user && ", " + user.name}!
+        </Text>
+        <Text
+          h1
+          size={40}
+          css={{
+            lineHeight: "1.2",
+          }}
+          weight="medium"
+        >
+          This is an app built to showcase the capabilities of Next.js 13.
+        </Text>
+        <Spacer y={1} />
+        <Row wrap="wrap" style={{marginBottom: 12}}>
+          <Button
+            color="gradient"
+            shadow
+            ghost
+            style={{ marginBottom: 4 }}
+            onPress={() =>
+              window.open("https://github.com/yaseenmustapha/nextjs13-app")
+            }
           >
-            Welcome{user && ", " + user.name}!
-          </Text>
-          <Text
-            h1
-            size={40}
-            css={{
-              lineHeight: "1.2",
-            }}
-            weight="medium"
+            Source Code on GitHub
+          </Button>
+
+          <Link href="https://github.com/yaseenmustapha/nextjs13-app">
+            <Text
+              h1
+              size={20}
+              css={{
+                lineHeight: "1.1",
+                textGradient: "45deg, $yellow600 10%, $pink600",
+                marginTop: 8,
+                paddingRight: 2,
+                paddingLeft: 12,
+              }}
+              weight="medium"
+            >
+              {numStars} stars on GitHub
+            </Text>
+          </Link>
+
+          
+        </Row>
+
+        <User
+            src="https://avatars.githubusercontent.com/u/26501999"
+            name="Yaseen Mustapha"
+            pointer
+            zoomed
+            onClick={() => window.open("https://github.com/yaseenmustapha")}
           >
-            This is an app built to showcase the capabilities of Next.js 13.
-          </Text>
-          <Spacer y={1} />
-          <Row wrap="wrap">
-            <Button
-              color="gradient"
-              shadow
-              ghost
-              style={{ marginBottom: 12 }}
-              onPress={() =>
-                window.open(
-                  "https://github.com/yaseenmustapha/nextjs-13-demo-app"
-                )
-              }
-            >
-              Source Code on GitHub
-            </Button>
+            <User.Link href="https://github.com/yaseenmustapha">
+              github.com/yaseenmustapha
+            </User.Link>
+          </User>
 
-            <User
-              src="https://avatars.githubusercontent.com/u/26501999"
-              name="Yaseen Mustapha"
-              pointer
-              zoomed
-              onClick={() => window.open("https://github.com/yaseenmustapha")}
-            >
-              <User.Link href="https://github.com/yaseenmustapha">
-                github.com/yaseenmustapha
-              </User.Link>
-            </User>
-          </Row>
+        <Spacer y={2} />
 
-          <Spacer y={2} />
-
-          <Text h1 size={40} weight="medium" b style={{paddingLeft: 12}}>
-            Features
-          </Text>
-        </Container>
-
-        <Grid.Container gap={2} justify="center">
-          {cardItems.map((item, i) => (
-            <Grid sm={4} key={i} style={{ width: "100%" }}>
-              <Card css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}>
-                <Card.Header>
-                  {item.svg}
-                  <Spacer x={0.5} />
-                  <Text b>{item.title}</Text>
-                </Card.Header>
-                <Card.Body>
-                  <Text>{item.description}</Text>
-                </Card.Body>
-                <Card.Footer>
-                  <Link color="primary" target="_blank" href={item.url}>
-                    {item.footer}
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </Grid>
-          ))}
-        </Grid.Container>
+        <Text h1 size={40} weight="medium" b style={{ paddingLeft: 12 }}>
+          Features
+        </Text>
       </Container>
-    </main>
+
+      <Grid.Container gap={2} justify="center">
+        {cardItems.map((item, i) => (
+          <Grid sm={4} key={i} style={{ width: "100%" }}>
+            <Card css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}>
+              <Card.Header>
+                {item.svg}
+                <Spacer x={0.5} />
+                <Text b>{item.title}</Text>
+              </Card.Header>
+              <Card.Body>
+                <Text>{item.description}</Text>
+              </Card.Body>
+              <Card.Footer>
+                <Link color="primary" target="_blank" href={item.url}>
+                  {item.footer}
+                </Link>
+              </Card.Footer>
+            </Card>
+          </Grid>
+        ))}
+      </Grid.Container>
+    </Container>
   );
 }

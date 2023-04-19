@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import {
   Avatar,
   Button,
+  Loading,
   Navbar,
   Switch,
   Text,
@@ -36,7 +37,7 @@ const MoonIcon = () => {
 };
 
 export default function Nav() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const { user } = session || {};
   const segment = useSelectedLayoutSegment();
   const { setTheme } = useNextTheme();
@@ -136,7 +137,11 @@ export default function Nav() {
         ) : (
           <Navbar.Item>
             <Button auto flat onClick={() => signIn()}>
-              Login
+              {status && status === "loading" ? (
+                <Loading type="points" color="currentColor" size="sm" />
+              ) : (
+                "Login"
+              )}
             </Button>
           </Navbar.Item>
         )}
