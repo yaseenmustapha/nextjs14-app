@@ -27,6 +27,10 @@ export default function AddPost(): JSX.Element {
 
   const enhanceWithAI = async () => {
     if (enhancing) return;
+    if (content.length < 1) {
+      setEnhanceError(true);
+      return;
+    }
     setEnhancing(true);
     setEnhanceError(false);
 
@@ -106,7 +110,7 @@ export default function AddPost(): JSX.Element {
           <Popover.Trigger>
             <Button
               type="submit"
-              disabled={!session}
+              disabled={!session || enhancing}
               auto
               style={{ minWidth: "100px" }}
             >
@@ -118,7 +122,11 @@ export default function AddPost(): JSX.Element {
           </Popover.Content>
         </Popover>
 
-        <Popover isOpen={enhanceError} onOpenChange={enhanceError ? setEnhanceError : undefined} placement="right">
+        <Popover
+          isOpen={enhanceError}
+          onOpenChange={enhanceError ? setEnhanceError : undefined}
+          placement="right"
+        >
           <Popover.Trigger>
             <Button
               color="gradient"
@@ -126,6 +134,7 @@ export default function AddPost(): JSX.Element {
               style={{ marginLeft: 10, minWidth: "150px" }}
               onPress={enhanceWithAI}
               auto
+              shadow
             >
               {enhancing ? (
                 <Loading type="points-opacity" color="currentColor" size="sm" />
@@ -135,7 +144,9 @@ export default function AddPost(): JSX.Element {
             </Button>
           </Popover.Trigger>
           <Popover.Content>
-            <Text css={{ p: "$10" }}>Error enhancing post. Please try again.</Text>
+            <Text css={{ p: "$10" }}>
+              Error enhancing post. Please try again.
+            </Text>
           </Popover.Content>
         </Popover>
 

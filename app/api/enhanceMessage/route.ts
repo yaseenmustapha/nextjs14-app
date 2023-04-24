@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     messages: [
       {
         role: "user",
-        content: `Rewrite this social media post to make it more punchy, viral and interesting (keep it under 300 characters): ${prompt}`,
+        content: `Rewrite this social media post to make it more punchy, viral and interesting (keep it under 300 characters and do not add quotes around the text): ${prompt}`,
       },
     ],
   });
