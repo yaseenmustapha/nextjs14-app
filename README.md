@@ -16,10 +16,11 @@ Live demo is up at [nextjs13.app](https://www.nextjs13.app)
 - Uses client and server components from **React 18**
 - API Routes
 - Live social media feed with likes, comments, and profanity filter
+- Enhance social media posts using **OpenAI API** with **GPT-3.5-Turbo** model
 - OAuth 2.0 Authentication through Google, GitHub, and Discord using **NextAuth.js**
 - ORM using **Prisma**
 - PostgreSQL Database on **Railway**
-- UI Components built using **NextUI**
+- UI Components built using **NextUI** (**TailwindCSS** integration in progress)
 - Dark mode using **next-themes**
 - Payments using **Stripe**
 - Written in **TypeScript**
