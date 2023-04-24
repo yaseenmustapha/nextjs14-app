@@ -13,6 +13,9 @@ export const metadata = {
     "NextUI",
     "NextAuth",
     "Prisma",
+    "PostgreSQL",
+    "OpenAI",
+    "GPT",
     "Stripe",
   ],
   authors: [
