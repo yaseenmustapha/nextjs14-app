@@ -27,6 +27,10 @@ export default function AddPost(): JSX.Element {
 
   const enhanceWithAI = async () => {
     if (enhancing) return;
+    if (content.length < 1) {
+      setEnhanceError(true);
+      return;
+    }
     setEnhancing(true);
     setEnhanceError(false);
 
@@ -106,7 +110,7 @@ export default function AddPost(): JSX.Element {
           <Popover.Trigger>
             <Button
               type="submit"
-              disabled={!session}
+              disabled={!session || enhancing}
               auto
               style={{ minWidth: "100px" }}
             >
