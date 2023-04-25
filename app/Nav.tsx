@@ -3,6 +3,7 @@ import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import {
   Avatar,
+  Badge,
   Button,
   Loading,
   Navbar,
@@ -39,6 +40,7 @@ const MoonIcon = () => {
 export default function Nav() {
   const { data: session, status } = useSession();
   const { user } = session || {};
+  const isSubscribed = user.subscriptionStatus === "active";
   const segment = useSelectedLayoutSegment();
   const { setTheme } = useNextTheme();
   const { isDark } = useTheme();
@@ -125,7 +127,15 @@ export default function Nav() {
         />
         {session ? (
           <>
-            {user?.image ? (
+            {isSubscribed ? (
+              <Badge disableOutline content="PRO" size="md" color="primary">
+                {user?.image ? (
+                  <Avatar src={user.image as string} zoomed />
+                ) : (
+                  <Avatar text={user?.name?.charAt(0) as string} zoomed />
+                )}
+              </Badge>
+            ) : user?.image ? (
               <Avatar src={user.image as string} zoomed />
             ) : (
               <Avatar text={user?.name?.charAt(0) as string} zoomed />
