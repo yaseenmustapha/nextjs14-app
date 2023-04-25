@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 export default function Subscribe() {
   const { data: session } = useSession();
   const { user } = session || {};
-  const isSubscribed = user.subscriptionStatus === "active";
+  const isSubscribed = user?.subscriptionStatus === "active" || false;
 
   return (
     <main>

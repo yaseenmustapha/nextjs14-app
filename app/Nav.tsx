@@ -40,7 +40,7 @@ const MoonIcon = () => {
 export default function Nav() {
   const { data: session, status } = useSession();
   const { user } = session || {};
-  const isSubscribed = user.subscriptionStatus === "active";
+  const isSubscribed = user?.subscriptionStatus === "active" || false;
   const segment = useSelectedLayoutSegment();
   const { setTheme } = useNextTheme();
   const { isDark } = useTheme();

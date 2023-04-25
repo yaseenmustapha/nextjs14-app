@@ -14,6 +14,6 @@ export default async function handler(
   res.status(200).json({
     id: user?.id,
     email: user?.email,
-    subscriptionStatus: user?.subscriptionStatus,
+    subscriptionStatus: user?.subscriptionStatus || "none",
   });
 }
