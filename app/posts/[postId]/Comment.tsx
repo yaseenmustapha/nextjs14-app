@@ -2,6 +2,7 @@
 import { formatDate } from "@/lib/utils";
 import {
   Avatar,
+  Badge,
   Button,
   Card,
   Grid,
@@ -41,6 +42,7 @@ const DeleteIcon = ({ onClick }: { onClick: Function }) => {
 
 export default function Comment({
   userId,
+  subscriptionStatus,
   id,
   name,
   avatar,
@@ -48,6 +50,7 @@ export default function Comment({
   content,
 }: {
   userId: string;
+  subscriptionStatus: string;
   id: string;
   name: string;
   avatar: string;
@@ -56,6 +59,7 @@ export default function Comment({
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
+  const isSubscribed = subscriptionStatus === "active";
   const router = useRouter();
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -94,11 +98,21 @@ export default function Comment({
         variant="bordered"
       >
         <Card.Header>
-          <Avatar
-            src={avatar}
-            color="gradient"
-            bordered={userId === user?.id}
-          />
+          {isSubscribed ? (
+            <Badge disableOutline content="PRO" size="md" color="primary">
+              <Avatar
+                src={avatar}
+                color="gradient"
+                bordered={userId === user?.id}
+              />
+            </Badge>
+          ) : (
+            <Avatar
+              src={avatar}
+              color="gradient"
+              bordered={userId === user?.id}
+            />
+          )}
           <Spacer x={0.5} />
           <Grid.Container css={{ pl: "$6" }}>
             <Grid xs={12}>

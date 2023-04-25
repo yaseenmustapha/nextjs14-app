@@ -11,12 +11,12 @@ export default function Thread({
   post: {
     id: string;
     content: string;
-    user: { id: string; name: string; image: string };
+    user: { id: string; subscriptionStatus: string; name: string; image: string };
     createdAt: string;
     likes: [];
     comments: {
       id: string;
-      user: { id: string; name: string; image: string };
+      user: { id: string; subscriptionStatus: string; name: string; image: string };
       createdAt: string;
       content: string;
     }[];
@@ -31,6 +31,7 @@ export default function Thread({
       <Post
         key={post.id}
         userId={post.user.id}
+        subscriptionStatus={post.user.subscriptionStatus}
         id={post.id}
         name={post.user.name}
         avatar={post.user.image}
@@ -44,6 +45,7 @@ export default function Thread({
         <Comment
           key={comment.id}
           userId={comment.user.id}
+          subscriptionStatus={comment.user.subscriptionStatus}
           id={comment.id}
           name={comment.user.name}
           avatar={comment.user.image}
