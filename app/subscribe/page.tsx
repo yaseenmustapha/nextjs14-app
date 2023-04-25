@@ -1,7 +1,20 @@
 "use client";
-import { Button, Card, Col, Container, Row, Spacer, Text } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Row,
+  Spacer,
+  Text,
+} from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 export default function Subscribe() {
+  const { data: session } = useSession();
+  const { user } = session || {};
+  const isSubscribed = user?.subscriptionStatus === "active" || false;
+
   return (
     <main>
       <Container>
@@ -15,9 +28,10 @@ export default function Subscribe() {
         >
           Subscribe
         </Text>
-        <Text>
-          Stripe payments under construction. Please check back later.
-        </Text>
+
+        {isSubscribed && (
+          <Text h2>You are already subscribed.</Text>
+        )}
 
         <Spacer y={2} />
 
@@ -61,31 +75,35 @@ export default function Subscribe() {
                 <Row>
                   <Col>
                     <Text color="#d1d1d1" size={12}>
-                      Available soon.
+                      Available now.
                     </Text>
                     <Text color="#d1d1d1" size={12}>
-                      Development in progress.
+                      Use card 4242 4242 4242 4242 to test.
                     </Text>
                   </Col>
                 </Row>
               </Col>
               <Col>
                 <Row justify="flex-end">
-                  <Button
-                    flat
-                    auto
-                    rounded
-                    css={{ color: "#94f9f0", bg: "#94f9f026" }}
-                  >
-                    <Text
-                      css={{ color: "inherit" }}
-                      size={12}
-                      weight="bold"
-                      transform="uppercase"
+                  <form action="/api/stripe" method="POST">
+                    <Button
+                      flat
+                      auto
+                      rounded
+                      css={{ color: "#94f9f0", bg: "#94f9f026" }}
+                      type="submit"
+                      disabled={isSubscribed}
                     >
-                      Subscribe Now
-                    </Text>
-                  </Button>
+                      <Text
+                        css={{ color: "inherit" }}
+                        size={12}
+                        weight="bold"
+                        transform="uppercase"
+                      >
+                        Subscribe Now
+                      </Text>
+                    </Button>
+                  </form>
                 </Row>
               </Col>
             </Row>

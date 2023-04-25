@@ -10,7 +10,7 @@ export default function Feed({
   data: {
     id: string;
     content: string;
-    user: { id: string; name: string; image: string };
+    user: { id: string; subscriptionStatus: string; name: string; image: string };
     createdAt: string;
     likes: [];
     comments: [];
@@ -32,6 +32,7 @@ export default function Feed({
             key={post.id}
             id={post.id}
             userId={post.user.id}
+            subscriptionStatus={post.user.subscriptionStatus}
             name={post.user.name}
             avatar={post.user.image}
             createdAt={post.createdAt}

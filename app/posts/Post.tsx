@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { formatDate } from "@/lib/utils";
 import {
   Avatar,
+  Badge,
   Button,
   Card,
   Grid,
@@ -68,6 +69,7 @@ const DeleteIcon = ({ onClick }: { onClick: Function }) => {
 export default function Post({
   id,
   userId,
+  subscriptionStatus,
   name,
   avatar,
   createdAt,
@@ -77,6 +79,7 @@ export default function Post({
 }: {
   id: string;
   userId: string;
+  subscriptionStatus: string;
   name: string;
   avatar: string;
   createdAt: string;
@@ -91,6 +94,7 @@ export default function Post({
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
+  const isSubscribed = subscriptionStatus === "active";
   const currentUserLiked =
     (session && likes.some((like) => like.userId === user?.id)) || false;
   const router = useRouter();
@@ -155,11 +159,21 @@ export default function Post({
         variant="bordered"
       >
         <Card.Header>
-          <Avatar
-            src={avatar}
-            color="gradient"
-            bordered={userId === user?.id}
-          />
+          {isSubscribed ? (
+            <Badge disableOutline content="PRO" size="md" color="primary">
+              <Avatar
+                src={avatar}
+                color="gradient"
+                bordered={userId === user?.id}
+              />
+            </Badge>
+          ) : (
+            <Avatar
+              src={avatar}
+              color="gradient"
+              bordered={userId === user?.id}
+            />
+          )}
           <Spacer x={0.5} />
           <Grid.Container css={{ pl: "$6" }}>
             <Grid xs={12}>
