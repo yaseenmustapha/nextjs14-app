@@ -70,6 +70,24 @@ export default function Comment({
     setVisible(false);
   };
 
+  function linkify(text: string) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const splitText = text.split(urlRegex);
+    const jsxElements = splitText.map((s, i) => {
+      if (s.match(urlRegex)) {
+        return (
+          <a href={s} target="_blank" rel="noopener noreferrer" key={i}>
+            {s}
+          </a>
+        );
+      }
+      return <span key={i}>{s}</span>;
+    });
+    return jsxElements;
+  }
+
+  const linkifiedContent = linkify(content);
+
   const deleteComment = async (commentId: string) => {
     setDeleteLoading(true);
     try {
@@ -124,7 +142,7 @@ export default function Comment({
           </Grid.Container>
         </Card.Header>
         <Card.Body>
-          <Text>{content}</Text>
+          <Text>{linkifiedContent}</Text>
         </Card.Body>
         {userId === user?.id && (
           <Card.Footer>
