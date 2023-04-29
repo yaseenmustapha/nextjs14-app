@@ -21,7 +21,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
   const cardItems = [
     {
       title: "Next.js 13",
-      description: "App directory, routing, layouts, API routes.",
+      description: "App directory, routing, layouts, and API routes.",
       footer: "Next.js 13 Beta documentation",
       url: "https://beta.nextjs.org/docs",
       svg: (
@@ -48,10 +48,57 @@ export default function HomePage({ numStars }: { numStars: string }) {
       ),
     },
     {
-      title: "Database",
-      description: "ORM using Prisma and PostgreSQL database using Railway.",
+      title: "TypeScript",
+      description: "Type safety and more.",
+      footer: "TypeScript documentation",
+      url: "https://www.typescriptlang.org/docs",
+      svg: (
+        <svg
+          fill="none"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ height: 32 }}
+        >
+          <rect
+            fill={isDark ? "#FFFFFF" : "#100F13"}
+            height="512"
+            rx="50"
+            width="512"
+          />
+          <path
+            clip-rule="evenodd"
+            d="m316.939 407.424v50.061c8.138 4.172 17.763 7.3 28.875 9.386s22.823 3.129 35.135 3.129c11.999 0 23.397-1.147 34.196-3.442 10.799-2.294 20.268-6.075 28.406-11.342 8.138-5.266 14.581-12.15 19.328-20.65s7.121-19.007 7.121-31.522c0-9.074-1.356-17.026-4.069-23.857s-6.625-12.906-11.738-18.225c-5.112-5.319-11.242-10.091-18.389-14.315s-15.207-8.213-24.18-11.967c-6.573-2.712-12.468-5.345-17.685-7.9-5.217-2.556-9.651-5.163-13.303-7.822-3.652-2.66-6.469-5.476-8.451-8.448-1.982-2.973-2.974-6.336-2.974-10.091 0-3.441.887-6.544 2.661-9.308s4.278-5.136 7.512-7.118c3.235-1.981 7.199-3.52 11.894-4.615 4.696-1.095 9.912-1.642 15.651-1.642 4.173 0 8.581.313 13.224.938 4.643.626 9.312 1.591 14.008 2.894 4.695 1.304 9.259 2.947 13.694 4.928 4.434 1.982 8.529 4.276 12.285 6.884v-46.776c-7.616-2.92-15.937-5.084-24.962-6.492s-19.381-2.112-31.066-2.112c-11.895 0-23.163 1.278-33.805 3.833s-20.006 6.544-28.093 11.967c-8.086 5.424-14.476 12.333-19.171 20.729-4.695 8.395-7.043 18.433-7.043 30.114 0 14.914 4.304 27.638 12.912 38.172 8.607 10.533 21.675 19.45 39.204 26.751 6.886 2.816 13.303 5.579 19.25 8.291s11.086 5.528 15.415 8.448c4.33 2.92 7.747 6.101 10.252 9.543 2.504 3.441 3.756 7.352 3.756 11.733 0 3.233-.783 6.231-2.348 8.995s-3.939 5.162-7.121 7.196-7.147 3.624-11.894 4.771c-4.748 1.148-10.303 1.721-16.668 1.721-10.851 0-21.597-1.903-32.24-5.71-10.642-3.806-20.502-9.516-29.579-17.13zm-84.159-123.342h64.22v-41.082h-179v41.082h63.906v182.918h50.874z"
+            fill={!isDark ? "#FFFFFF" : "#100F13"}
+            fill-rule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "ORM",
+      description: "Object-relational mapping using Prisma.",
       footer: "Prisma documentation",
       url: "https://www.prisma.io/docs/getting-started/quickstart",
+      svg: (
+        <svg
+          fill="currentColor"
+          viewBox="0.34 -0.059977834648891726 33.11668247084116 39.96397783464889"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ height: 32 }}
+        >
+          <path
+            d="M32.908 30.475L19.151 1.26a2.208 2.208 0 0 0-1.88-1.257 2.183 2.183 0 0 0-2.01 1.042L.34 25.212a2.26 2.26 0 0 0 .025 2.426L7.66 38.935a2.346 2.346 0 0 0 2.635.969l21.17-6.262a2.32 2.32 0 0 0 1.457-1.258 2.27 2.27 0 0 0-.013-1.91zm-3.08 1.253L11.864 37.04c-.548.163-1.074-.312-.96-.865l6.418-30.731c.12-.575.914-.666 1.165-.134l11.881 25.23a.858.858 0 0 1-.541 1.188z"
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Database",
+      description: "PostgreSQL database deployed on Railway.",
+      footer: "Provision database on Railway",
+      url: "https://railway.app/new",
       svg: (
         <svg
           viewBox="0 0 1024 1024"
@@ -145,7 +192,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
     {
       title: "Payments",
       description:
-        "Free and paid subscriptions using Stripe unlocking features for users.",
+        "Paid subscriptions using Stripe unlocking features for users.",
       footer: "Stripe Payment API documentation",
       url: "https://stripe.com/docs/payments",
       svg: (

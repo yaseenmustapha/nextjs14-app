@@ -1,8 +1,5 @@
 "use client";
-import {
-  Container,
-  Text,
-} from "@nextui-org/react";
+import { Container, Text } from "@nextui-org/react";
 
 export default function Success() {
   return (
@@ -18,9 +15,7 @@ export default function Success() {
         >
           Success!
         </Text>
-        <Text>
-          You have successfully subscribed to the Pro Plan.
-        </Text>
+        <Text h2>You have successfully subscribed to the Pro Plan.</Text>
       </Container>
     </main>
   );
