@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
   const { user } = session || {};
-  console.log("user", user);
+
   try {
     const session = await stripe.checkout.sessions.create({
       client_reference_id: user.id,

@@ -5,6 +5,7 @@ import {
   Col,
   Container,
   Row,
+  Spacer,
   Text,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
@@ -29,7 +30,15 @@ export default function Subscribe() {
         </Text>
 
         {isSubscribed ? (
-          <Text h2>You are already subscribed.</Text>
+          <>
+            <Text h2>You are already subscribed.</Text>
+            <Spacer y={1} />
+            <form action="/api/portal" method="POST">
+              <Button type="submit" rounded auto flat>
+                Manage Subscription
+              </Button>
+            </form>
+          </>
         ) : (
           <Card css={{ w: "100%", h: "400px" }}>
             <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
@@ -44,6 +53,9 @@ export default function Subscribe() {
                 </Text>
                 <Text h3 color="white">
                   Get unlimited posts and comments
+                </Text>
+                <Text h3 color="white">
+                  PRO badge on your profile
                 </Text>
               </Col>
             </Card.Header>
@@ -88,7 +100,7 @@ export default function Subscribe() {
                         rounded
                         css={{ color: "#94f9f0", bg: "#94f9f026" }}
                         type="submit"
-                        disabled={isSubscribed}
+                        disabled={isSubscribed || !session}
                       >
                         <Text
                           css={{ color: "inherit" }}
@@ -96,7 +108,7 @@ export default function Subscribe() {
                           weight="bold"
                           transform="uppercase"
                         >
-                          Subscribe Now
+                          {session ? "Subscribe Now" : "Sign in to Subscribe"}
                         </Text>
                       </Button>
                     </form>
