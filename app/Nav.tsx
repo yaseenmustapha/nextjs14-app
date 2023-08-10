@@ -79,10 +79,9 @@ export default function Nav() {
               fill={theme === "dark" ? "#FFFFFF" : "#100F13"}
             />
           </svg>
-          <p className="font-bold text-inherit">Next.js 13 Demo App</p>
-          {/* <text className="b" color="inherit" hideIn="xs" style={{ paddingLeft: 10 }}>
-          Next.js 13 Demo App
-        </text> */}
+          <p className="font-bold text-inherit hidden sm:flex pl-4">
+            Next.js 13 Demo App
+          </p>
         </NavbarBrand>
       </NavbarContent>
 
@@ -132,13 +131,13 @@ export default function Nav() {
                 {user?.image ? (
                   <Avatar src={user.image as string} />
                 ) : (
-                  <Avatar text={user?.name?.charAt(0) as string} />
+                  <Avatar name={user?.name?.charAt(0) as string} />
                 )}
               </Badge>
             ) : user?.image ? (
               <Avatar src={user.image as string} />
             ) : (
-              <Avatar text={user?.name?.charAt(0) as string} />
+              <Avatar name={user?.name?.charAt(0) as string} />
             )}
             <p color="inherit" onClick={() => signOut()}>
               Sign out
@@ -148,7 +147,7 @@ export default function Nav() {
           <NavbarItem>
             <Button variant="flat" onClick={() => signIn()} color="primary">
               {status && status === "loading" ? (
-                <Spinner type="points" color="currentColor" size="sm" />
+                <Spinner color="primary" size="sm" />
               ) : (
                 "Login"
               )}
