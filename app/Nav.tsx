@@ -16,6 +16,7 @@ import {
   Spinner,
   Switch,
 } from "@nextui-org/react";
+import NextLink from "next/link";
 import { useTheme } from "next-themes";
 import { useSelectedLayoutSegment } from "next/navigation";
 
@@ -90,6 +91,7 @@ export default function Nav() {
           <Link
             color={segment === "(home)" ? undefined : "foreground"}
             href="/"
+            as={NextLink}
           >
             Home
           </Link>
@@ -98,6 +100,7 @@ export default function Nav() {
           <Link
             color={segment === "posts" ? undefined : "foreground"}
             href="/posts"
+            as={NextLink}
           >
             Feed
           </Link>
@@ -106,6 +109,7 @@ export default function Nav() {
           <Link
             color={segment === "subscribe" ? undefined : "foreground"}
             href="/subscribe"
+            as={NextLink}
           >
             Subscribe
           </Link>
@@ -165,6 +169,7 @@ export default function Nav() {
               fontWeight: segment === "(home)" ? "bold" : "normal",
             }}
             href="/"
+            as={NextLink}
           >
             Home
           </Link>
@@ -177,6 +182,7 @@ export default function Nav() {
               fontWeight: segment === "posts" ? "bold" : "normal",
             }}
             href="/posts"
+            as={NextLink}
           >
             Feed
           </Link>
@@ -189,6 +195,7 @@ export default function Nav() {
               fontWeight: segment === "subscribe" ? "bold" : "normal",
             }}
             href="/subscribe"
+            as={NextLink}
           >
             Subscribe
           </Link>

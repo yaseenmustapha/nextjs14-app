@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <main>
-      {/* <HomePage numStars={githubStars} /> */}
+      <HomePage numStars={githubStars} />
     </main>
   );
 }
