@@ -152,7 +152,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
     {
       title: "Tailwind CSS",
       description:
-        "Utility-first CSS framework that facilitates rapid front-end styling while maintaining extensive customization capabilities.",
+        "Utility-first CSS framework enabling rapid and customizable front-end styling.",
       footer: "Tailwind CSS Documentation",
       url: "https://tailwindcss.com/docs",
       svg: (
