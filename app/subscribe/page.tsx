@@ -1,11 +1,5 @@
 "use client";
-import {
-  Button,
-  Card,
-  CardFooter,
-  CardHeader,
-  Image,
-} from "@nextui-org/react";
+import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 
 export default function Subscribe() {
@@ -30,7 +24,7 @@ export default function Subscribe() {
                   color="primary"
                   radius="full"
                   variant="flat"
-                  disabled={isSubscribed}
+                  isDisabled={isSubscribed}
                 >
                   Manage Subscription
                 </Button>

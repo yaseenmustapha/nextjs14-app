@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
-    "@nextui-org/react": "^2.0.18",
+    "@nextui-org/react": "^2.0.19",
     "@prisma/client": "^4.10.1",
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",

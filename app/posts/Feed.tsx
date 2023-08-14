@@ -1,5 +1,5 @@
 "use client";
-import { Container, Grid, Row, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import AddPost from "./AddPost";
 import Header from "./Header";
 import Post from "./Post";
@@ -10,7 +10,12 @@ export default function Feed({
   data: {
     id: string;
     content: string;
-    user: { id: string; subscriptionStatus: string; name: string; image: string };
+    user: {
+      id: string;
+      subscriptionStatus: string;
+      name: string;
+      image: string;
+    };
     createdAt: string;
     likes: [];
     comments: [];
@@ -18,14 +23,10 @@ export default function Feed({
 }) {
   return (
     <main>
-      <Container display="flex" alignItems="center" xs>
+      <div className="container mx-auto px-6 sm:px-8 md:px-16 lg:px-20 max-w-3xl mt-6 items-center">
         <Spacer y={0.5} />
-        <Row>
-          <Header />
-        </Row>
-        <Row>
-          <AddPost />
-        </Row>
+        <Header />
+        <AddPost />
 
         {data?.map((post) => (
           <Post
@@ -41,7 +42,7 @@ export default function Feed({
             comments={post.comments}
           />
         ))}
-      </Container>
+      </div>
     </main>
   );
 }

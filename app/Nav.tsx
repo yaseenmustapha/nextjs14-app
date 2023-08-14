@@ -131,7 +131,13 @@ export default function Nav() {
         {session ? (
           <>
             {isSubscribed ? (
-              <Badge disableOutline content="PRO" size="md" color="primary" className=" font-bold text-xs py-1 px-2">
+              <Badge
+                disableOutline
+                content="PRO"
+                size="md"
+                color="primary"
+                className="font-bold text-xs py-1 px-2"
+              >
                 {user?.image ? (
                   <Avatar src={user.image as string} />
                 ) : (

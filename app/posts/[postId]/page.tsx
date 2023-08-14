@@ -1,4 +1,3 @@
-import Post from "../Post";
 import Thread from "./Thread";
 
 async function getPost(postId: string) {
