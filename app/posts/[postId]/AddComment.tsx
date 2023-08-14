@@ -14,7 +14,7 @@ import { useState } from "react";
 import Filter from "bad-words";
 
 const filter = new Filter();
-
+// add comment to test
 export default function AddComment({
   postId,
 }: {
