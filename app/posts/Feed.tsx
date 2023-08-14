@@ -1,33 +1,30 @@
 "use client";
-import { Container, Grid, Row, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
+import { Comment, Like, User } from "@prisma/client";
 import AddPost from "./AddPost";
 import Header from "./Header";
 import Post from "./Post";
 
 export default function Feed({
-  data,
+  posts,
 }: {
-  data: {
+  posts: {
     id: string;
     content: string;
-    user: { id: string; subscriptionStatus: string; name: string; image: string };
-    createdAt: string;
-    likes: [];
-    comments: [];
+    user: User;
+    createdAt: Date;
+    likes: Like[];
+    comments: Comment[];
   }[];
 }) {
   return (
     <main>
-      <Container display="flex" alignItems="center" xs>
+      <div className="container mx-auto px-6 sm:px-8 md:px-16 lg:px-20 max-w-3xl mt-6 items-center">
         <Spacer y={0.5} />
-        <Row>
-          <Header />
-        </Row>
-        <Row>
-          <AddPost />
-        </Row>
+        <Header />
+        <AddPost />
 
-        {data?.map((post) => (
+        {posts?.map((post) => (
           <Post
             key={post.id}
             id={post.id}
@@ -41,7 +38,7 @@ export default function Feed({
             comments={post.comments}
           />
         ))}
-      </Container>
+      </div>
     </main>
   );
 }

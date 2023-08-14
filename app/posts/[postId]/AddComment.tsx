@@ -1,11 +1,11 @@
 "use client";
 import {
   Button,
-  Loading,
   Popover,
-  Row,
+  PopoverContent,
+  PopoverTrigger,
   Spacer,
-  Text,
+  Spinner,
   Textarea,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
@@ -69,9 +69,13 @@ export default function AddComment({
     <form onSubmit={handleSubmit} style={{ width: "100%" }}>
       <Spacer y={0.5} />
       <Textarea
-        size="xl"
-        bordered
-        disabled={!session}
+        validationState={error ? "invalid" : "valid"}
+        errorMessage={error && errorMessage}
+        className="mt-6"
+        size="lg"
+        variant="bordered"
+        labelPlacement="outside"
+        isDisabled={!session}
         width="100%"
         placeholder={session ? "Comment here..." : "Please sign in to comment."}
         value={content}
@@ -79,20 +83,25 @@ export default function AddComment({
         onChange={(e) => setContent(e.target.value)}
       />
       <Spacer y={0.5} />
-      <Row wrap="wrap" align="center" justify="space-between">
+      <div className="row flex-wrap flex items-center">
         <Popover isOpen={error} onOpenChange={setError} placement="right">
-          <Popover.Trigger>
-            <Button type="submit" disabled={!session}>
-              {loading ? <Loading color="currentColor" size="sm" /> : "Comment"}
+          <PopoverTrigger>
+            <Button
+              className="font-medium"
+              color="primary"
+              type="submit"
+              isDisabled={!session}
+            >
+              {loading ? <Spinner size="sm" /> : "Comment"}
             </Button>
-          </Popover.Trigger>
-          <Popover.Content>
-            <Text css={{ p: "$10" }}>{errorMessage}</Text>
-          </Popover.Content>
+          </PopoverTrigger>
+          <PopoverContent>
+            <p className="p-2">{errorMessage}</p>
+          </PopoverContent>
         </Popover>
 
-        <Text>{content.length}/300</Text>
-      </Row>
+        <p className="ml-auto">{(content && content.length) || "0"}/300</p>
+      </div>
 
       <Spacer y={1} />
     </form>

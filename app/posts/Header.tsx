@@ -1,17 +1,7 @@
-"use client";
-import { Text } from "@nextui-org/react";
-
 export default function Header() {
   return (
-    <Text
-      h1
-      size={60}
-      css={{
-        textGradient: "45deg, $blue600 -20%, $pink600 50%",
-      }}
-      weight="bold"
-    >
+    <h1 className="font-bold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-pink-500">
       Feed
-    </Text>
+    </h1>
   );
 }

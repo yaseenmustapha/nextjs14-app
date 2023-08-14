@@ -5,11 +5,16 @@ import {
   Badge,
   Button,
   Card,
-  Grid,
-  Loading,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Modal,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   Spacer,
-  Text,
+  Spinner,
+  useDisclosure,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -50,11 +55,11 @@ export default function Comment({
   content,
 }: {
   userId: string;
-  subscriptionStatus: string;
+  subscriptionStatus: string | null;
   id: string;
-  name: string;
-  avatar: string;
-  createdAt: string;
+  name: string | null;
+  avatar: string | null;
+  createdAt: Date;
   content: string;
 }) {
   const { data: session } = useSession();
@@ -62,13 +67,7 @@ export default function Comment({
   const isSubscribed = subscriptionStatus === "active";
   const router = useRouter();
   const [deleteLoading, setDeleteLoading] = useState(false);
-
-  const [visible, setVisible] = useState(false);
-  const handler = () => setVisible(true);
-
-  const closeHandler = () => {
-    setVisible(false);
-  };
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   function linkify(text: string) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -88,7 +87,7 @@ export default function Comment({
 
   const linkifiedContent = linkify(content);
 
-  const deleteComment = async (commentId: string) => {
+  const deleteComment = async (commentId: string, onClose: () => void) => {
     setDeleteLoading(true);
     try {
       const res = await fetch("/api/deleteComment", {
@@ -100,7 +99,7 @@ export default function Comment({
       });
 
       if (res.ok) {
-        closeHandler();
+        onClose();
         router.refresh();
       }
     } catch (error) {
@@ -111,43 +110,44 @@ export default function Comment({
 
   return (
     <>
-      <Card
-        css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}
-        variant="bordered"
-      >
-        <Card.Header>
+      <Card className="p-2 mt-4">
+        <CardHeader>
           {isSubscribed ? (
-            <Badge disableOutline content="PRO" size="md" color="primary">
+            <Badge
+              disableOutline
+              content="PRO"
+              size="md"
+              color="primary"
+              className="font-bold text-xs py-1 px-2"
+            >
               <Avatar
-                src={avatar}
-                color="gradient"
-                bordered={userId === user?.id}
+                src={avatar || undefined}
+                color="primary"
+                isBordered={userId === user?.id}
               />
             </Badge>
           ) : (
             <Avatar
-              src={avatar}
-              color="gradient"
-              bordered={userId === user?.id}
+              src={avatar || undefined}
+              color="primary"
+              isBordered={userId === user?.id}
             />
           )}
           <Spacer x={0.5} />
-          <Grid.Container css={{ pl: "$6" }}>
-            <Grid xs={12}>
-              <Text b>{name}</Text>
-            </Grid>
-            <Grid xs={12}>
-              <Text css={{ color: "$accents8" }}>{formatDate(createdAt)}</Text>
-            </Grid>
-          </Grid.Container>
-        </Card.Header>
-        <Card.Body>
-          <Text>{linkifiedContent}</Text>
-        </Card.Body>
+          <div className="pl-4">
+            <div className="font-bold">{name}</div>
+            <div className="text-small text-default-500">
+              {formatDate(createdAt.toISOString())}
+            </div>
+          </div>
+        </CardHeader>
+        <CardBody>
+          <p>{linkifiedContent}</p>
+        </CardBody>
         {userId === user?.id && (
-          <Card.Footer>
-            <DeleteIcon onClick={handler} />
-          </Card.Footer>
+          <CardFooter>
+            <DeleteIcon onClick={onOpen} />
+          </CardFooter>
         )}
       </Card>
       <Spacer y={1} />
@@ -155,26 +155,32 @@ export default function Comment({
       <Modal
         closeButton
         aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
       >
-        <Modal.Header>
-          <Text id="modal-title" size={18}>
-            Are you sure you want to delete this comment?
-          </Text>
-        </Modal.Header>
-        <Modal.Footer>
-          <Button auto flat onPress={closeHandler}>
-            Cancel
-          </Button>
-          <Button auto color="error" onPress={() => deleteComment(id)}>
-            {deleteLoading ? (
-              <Loading color="currentColor" size="sm" />
-            ) : (
-              "Delete"
-            )}
-          </Button>
-        </Modal.Footer>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader>
+                <p className="text-xl" id="modal-title">
+                  Are you sure you want to delete this comment?
+                </p>
+              </ModalHeader>
+              <ModalFooter>
+                <Button variant="flat" onPress={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  className="font-medium"
+                  color="danger"
+                  onPress={() => deleteComment(id, onClose)}
+                >
+                  {deleteLoading ? <Spinner size="sm" /> : "Delete"}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
       </Modal>
     </>
   );

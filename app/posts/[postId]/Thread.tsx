@@ -1,9 +1,10 @@
 "use client";
-import { Container, Row, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import Header from "./Header";
 import Post from "../Post";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import { Comment as PrismaComment, Like, User } from "@prisma/client";
 
 export default function Thread({
   post,
@@ -11,23 +12,16 @@ export default function Thread({
   post: {
     id: string;
     content: string;
-    user: { id: string; subscriptionStatus: string; name: string; image: string };
-    createdAt: string;
-    likes: [];
-    comments: {
-      id: string;
-      user: { id: string; subscriptionStatus: string; name: string; image: string };
-      createdAt: string;
-      content: string;
-    }[];
+    user: User;
+    createdAt: Date;
+    likes: Like[];
+    comments: (PrismaComment & { user: User })[];
   };
 }) {
   return (
-    <Container display="flex" alignItems="center" xs>
+    <div className="container mx-auto px-6 sm:px-8 md:px-16 lg:px-20 max-w-3xl mt-6 items-center">
       <Spacer y={0.5} />
-      <Row>
-        <Header />
-      </Row>
+      <Header />
       <Post
         key={post.id}
         userId={post.user.id}
@@ -53,6 +47,6 @@ export default function Thread({
           content={comment.content}
         />
       ))}
-    </Container>
+    </div>
   );
 }

@@ -6,15 +6,21 @@ import {
   Badge,
   Button,
   Card,
-  Grid,
-  Loading,
+  CardBody,
+  CardFooter,
+  CardHeader,
   Modal,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   Spacer,
-  Text,
+  Spinner,
+  useDisclosure,
 } from "@nextui-org/react";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { Comment, Like } from "@prisma/client";
 
 const HeartIcon = ({ fill, onClick }: { fill: boolean; onClick: Function }) => {
   const [hover, setHover] = useState(false);
@@ -79,18 +85,13 @@ export default function Post({
 }: {
   id: string;
   userId: string;
-  subscriptionStatus: string;
-  name: string;
-  avatar: string;
-  createdAt: string;
+  subscriptionStatus: string | null;
+  name: string | null;
+  avatar: string | null;
+  createdAt: Date;
   content: string;
-  likes: { id: string; postId: string; userId: string }[];
-  comments: {
-    id: string;
-    user: { name: string; image: string };
-    createdAt: string;
-    content: string;
-  }[];
+  likes: Like[];
+  comments: Comment[];
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
@@ -100,15 +101,8 @@ export default function Post({
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-
-  const [visible, setVisible] = useState(false);
-  const handler = () => setVisible(true);
-
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const segment = useSelectedLayoutSegment();
-
-  const closeHandler = () => {
-    setVisible(false);
-  };
 
   function linkify(text: string) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -149,7 +143,7 @@ export default function Post({
     setLoading(false);
   };
 
-  const deletePost = async (postId: string) => {
+  const deletePost = async (postId: string, onClose: () => void) => {
     setDeleteLoading(true);
     try {
       const res = await fetch("/api/deletePost", {
@@ -161,7 +155,7 @@ export default function Post({
       });
 
       if (res.ok) {
-        closeHandler();
+        onClose();
       }
     } catch (error) {
       console.log(error);
@@ -172,86 +166,89 @@ export default function Post({
 
   return (
     <>
-      <Card
-        css={{ paddingLeft: 6, paddingTop: 6, paddingBottom: 6 }}
-        variant="bordered"
-      >
-        <Card.Header>
+      <Card className="p-2 mt-4">
+        <CardHeader>
           {isSubscribed ? (
-            <Badge disableOutline content="PRO" size="md" color="primary">
+            <Badge
+              disableOutline
+              content="PRO"
+              size="md"
+              color="primary"
+              className="font-bold text-xs py-1 px-2"
+            >
               <Avatar
-                src={avatar}
-                color="gradient"
-                bordered={userId === user?.id}
+                src={avatar || undefined}
+                color="primary"
+                isBordered={userId === user?.id}
               />
             </Badge>
           ) : (
             <Avatar
-              src={avatar}
-              color="gradient"
-              bordered={userId === user?.id}
+              src={avatar || undefined}
+              color="primary"
+              isBordered={userId === user?.id}
             />
           )}
           <Spacer x={0.5} />
-          <Grid.Container css={{ pl: "$6" }}>
-            <Grid xs={12}>
-              <Text b>{name}</Text>
-            </Grid>
-            <Grid xs={12}>
-              <Text css={{ color: "$accents8" }}>{formatDate(createdAt)}</Text>
-            </Grid>
-          </Grid.Container>
-        </Card.Header>
-        <Card.Body>
-          <Text>{linkifiedContent}</Text>
-        </Card.Body>
-        <Card.Footer>
+          <div className="pl-4">
+            <div className="font-bold">{name}</div>
+            <div className="text-small text-default-500">
+              {formatDate(createdAt.toISOString())}
+            </div>
+          </div>
+        </CardHeader>
+        <CardBody>
+          <p>{linkifiedContent}</p>
+        </CardBody>
+        <CardFooter>
           <Link href={`/posts/${id}`}>
-            <Text css={{ color: "$accents8" }}>
+            <p className="text-default-500">
               {comments.length} {comments.length === 1 ? "comment" : "comments"}
-            </Text>
+            </p>
           </Link>
-          <Spacer x={0.5} />
+          <Spacer x={3} />
           {loading ? (
-            <Loading size="sm" color="error" />
+            <Spinner size="sm" color="danger" />
           ) : (
             <HeartIcon
               fill={currentUserLiked}
               onClick={() => session && addLike(id)}
             />
           )}
-          <Spacer x={0.1} />
-          <Text color={currentUserLiked ? "#F31260" : "#9ba1a6"}>
+          <Spacer x={0.5} />
+          <p className={currentUserLiked ? "text-red-500" : "text-default-500"}>
             {likes.length}
-          </Text>
-          {userId === user?.id && <DeleteIcon onClick={handler} />}
-        </Card.Footer>
+          </p>
+          {userId === user?.id && <DeleteIcon onClick={onOpen} />}
+        </CardFooter>
       </Card>
       <Spacer y={1} />
 
       <Modal
         closeButton
         aria-labelledby="modal-title"
-        open={visible}
-        onClose={closeHandler}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
       >
-        <Modal.Header>
-          <Text id="modal-title" size={18}>
-            Are you sure you want to delete this post?
-          </Text>
-        </Modal.Header>
-        <Modal.Footer>
-          <Button auto flat onPress={closeHandler}>
-            Cancel
-          </Button>
-          <Button auto color="error" onPress={() => deletePost(id)}>
-            {deleteLoading ? (
-              <Loading color="currentColor" size="sm" />
-            ) : (
-              "Delete"
-            )}
-          </Button>
-        </Modal.Footer>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader>
+                <p className="text-xl" id="modal-title">
+                  Are you sure you want to delete this post?
+                </p>
+              </ModalHeader>
+              <ModalFooter>
+                <Button variant="flat" onPress={onClose}>
+                  Cancel
+                </Button>
+                <Button color="danger" onPress={() => deletePost(id, onClose)}>
+                  {deleteLoading ? <Spinner size="sm" /> : "Delete"}
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
       </Modal>
     </>
   );
