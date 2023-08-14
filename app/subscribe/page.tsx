@@ -2,11 +2,9 @@
 import {
   Button,
   Card,
-  Col,
-  Container,
-  Row,
-  Spacer,
-  Text,
+  CardFooter,
+  CardHeader,
+  Image,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 
@@ -17,108 +15,76 @@ export default function Subscribe() {
 
   return (
     <main>
-      <Container>
-        <Text
-          h1
-          size={60}
-          css={{
-            textGradient: "45deg, $red600 -20%, $yellow600 50%",
-          }}
-          weight="bold"
-        >
+      <div className="container mx-auto px-6 sm:px-8 md:px-16 lg:px-20 max-w-6xl mt-6">
+        <h1 className="text-6xl font-bold bg-gradient-to-r from-red-600 via-yellow-600 to-yellow-600 to-50% text-transparent bg-clip-text">
           Subscribe
-        </Text>
+        </h1>
 
         {isSubscribed ? (
           <>
-            <Text h2>You are already subscribed.</Text>
-            <Spacer y={1} />
-            <form action="/api/portal" method="POST">
-              <Button type="submit" rounded auto flat>
-                Manage Subscription
-              </Button>
-            </form>
+            <h2 className="text-4xl mt-4">You are already subscribed.</h2>
+            <div className="mt-4">
+              <form action="/api/portal" method="POST">
+                <Button
+                  type="submit"
+                  color="primary"
+                  radius="full"
+                  variant="flat"
+                  disabled={isSubscribed}
+                >
+                  Manage Subscription
+                </Button>
+              </form>
+            </div>
           </>
         ) : (
-          <Card css={{ w: "100%", h: "400px" }}>
-            <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-              <Col>
-                <Text
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                  color="#E8E8E7"
+          <Card
+            isFooterBlurred
+            className="w-full h-[400px] col-span-12 sm:col-span-7 mt-8"
+          >
+            <CardHeader className="absolute z-10 top-1 flex-col items-start">
+              <p className="text-tiny text-white/60 uppercase font-bold">
+                Pro Plan
+              </p>
+              <h4 className="text-white/90 font-medium text-xl">
+                Get unlimited posts and comments
+              </h4>
+              <h4 className="text-white/90 font-medium text-xl">
+                PRO badge on your profile
+              </h4>
+            </CardHeader>
+            <Image
+              removeWrapper
+              src="https://images.pexels.com/photos/3975590/pexels-photo-3975590.jpeg"
+              alt="Relaxing app background"
+              className="z-0 w-full h-full object-cover"
+            />
+            <CardFooter className="absolute bg-black/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
+              <div className="flex flex-grow gap-2 items-center">
+                <div className="flex flex-col">
+                  <p className="text-tiny text-white/60">Available now.</p>
+                  <p className="text-tiny text-white/60">
+                    Use card 4242 4242 4242 4242 to test.
+                  </p>
+                </div>
+              </div>
+              <form action="/api/stripe" method="POST">
+                <Button
+                  radius="full"
+                  variant="flat"
+                  className="text-teal-200 bg-teal-400 bg-opacity-30"
+                  type="submit"
+                  isDisabled={isSubscribed || !session}
                 >
-                  Pro Plan
-                </Text>
-                <Text h3 color="white">
-                  Get unlimited posts and comments
-                </Text>
-                <Text h3 color="white">
-                  PRO badge on your profile
-                </Text>
-              </Col>
-            </Card.Header>
-            <Card.Body css={{ p: 0 }}>
-              <Card.Image
-                src="https://images.pexels.com/photos/3975590/pexels-photo-3975590.jpeg"
-                objectFit="cover"
-                width="100%"
-                height="100%"
-                alt="Relaxing app background"
-              />
-            </Card.Body>
-            <Card.Footer
-              isBlurred
-              css={{
-                position: "absolute",
-                bgBlur: "#0f111466",
-                borderTop: "$borderWeights$light solid $gray800",
-                bottom: 0,
-                zIndex: 1,
-              }}
-            >
-              <Row>
-                <Col>
-                  <Row>
-                    <Col>
-                      <Text color="#d1d1d1" size={12}>
-                        Available now.
-                      </Text>
-                      <Text color="#d1d1d1" size={12}>
-                        Use card 4242 4242 4242 4242 to test.
-                      </Text>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col>
-                  <Row justify="flex-end">
-                    <form action="/api/stripe" method="POST">
-                      <Button
-                        flat
-                        auto
-                        rounded
-                        css={{ color: "#94f9f0", bg: "#94f9f026" }}
-                        type="submit"
-                        disabled={isSubscribed || !session}
-                      >
-                        <Text
-                          css={{ color: "inherit" }}
-                          size={12}
-                          weight="bold"
-                          transform="uppercase"
-                        >
-                          {session ? "Subscribe Now" : "Sign in to Subscribe"}
-                        </Text>
-                      </Button>
-                    </form>
-                  </Row>
-                </Col>
-              </Row>
-            </Card.Footer>
+                  <span className="text-sm font-semibold uppercase">
+                    {session ? "Subscribe Now" : "Sign in to Subscribe"}
+                  </span>
+                </Button>
+              </form>
+            </CardFooter>
           </Card>
         )}
-      </Container>
+      </div>
     </main>
   );
 }

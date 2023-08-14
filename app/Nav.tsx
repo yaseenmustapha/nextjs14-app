@@ -67,7 +67,7 @@ export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="mt-2">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -131,7 +131,7 @@ export default function Nav() {
         {session ? (
           <>
             {isSubscribed ? (
-              <Badge disableOutline content="PRO" size="md" color="primary">
+              <Badge disableOutline content="PRO" size="md" color="primary" className=" font-bold text-xs py-1 px-2">
                 {user?.image ? (
                   <Avatar src={user.image as string} />
                 ) : (
@@ -143,9 +143,9 @@ export default function Nav() {
             ) : (
               <Avatar name={user?.name?.charAt(0) as string} />
             )}
-            <p color="inherit" onClick={() => signOut()}>
+            <Button variant="light" onClick={() => signOut()}>
               Sign out
-            </p>
+            </Button>
           </>
         ) : (
           <NavbarItem>
