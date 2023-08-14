@@ -162,7 +162,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
           viewBox="0 0 54 33"
           style={{ height: 24 }}
         >
-          <g clip-path="url(#prefix__clip0)">
+          <g clipPath="url(#prefix__clip0)">
             <path
               fill={theme === "dark" ? "#FFFFFF" : "#100F13"}
               fill-rule="evenodd"
