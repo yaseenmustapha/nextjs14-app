@@ -24,7 +24,6 @@ export default function Subscribe() {
                   color="primary"
                   radius="full"
                   variant="flat"
-                  isDisabled={isSubscribed}
                 >
                   Manage Subscription
                 </Button>
