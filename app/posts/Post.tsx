@@ -20,6 +20,7 @@ import {
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { Comment, Like } from "@prisma/client";
 
 const HeartIcon = ({ fill, onClick }: { fill: boolean; onClick: Function }) => {
   const [hover, setHover] = useState(false);
@@ -84,18 +85,13 @@ export default function Post({
 }: {
   id: string;
   userId: string;
-  subscriptionStatus: string;
-  name: string;
-  avatar: string;
-  createdAt: string;
+  subscriptionStatus: string | null;
+  name: string | null;
+  avatar: string | null;
+  createdAt: Date;
   content: string;
-  likes: { id: string; postId: string; userId: string }[];
-  comments: {
-    id: string;
-    user: { name: string; image: string };
-    createdAt: string;
-    content: string;
-  }[];
+  likes: Like[];
+  comments: Comment[];
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
@@ -181,14 +177,14 @@ export default function Post({
               className="font-bold text-xs py-1 px-2"
             >
               <Avatar
-                src={avatar}
+                src={avatar || undefined}
                 color="primary"
                 isBordered={userId === user?.id}
               />
             </Badge>
           ) : (
             <Avatar
-              src={avatar}
+              src={avatar || undefined}
               color="primary"
               isBordered={userId === user?.id}
             />
@@ -197,7 +193,7 @@ export default function Post({
           <div className="pl-4">
             <div className="font-bold">{name}</div>
             <div className="text-small text-default-500">
-              {formatDate(createdAt)}
+              {formatDate(createdAt.toISOString())}
             </div>
           </div>
         </CardHeader>
@@ -220,7 +216,7 @@ export default function Post({
             />
           )}
           <Spacer x={0.5} />
-          <p className={currentUserLiked ? "text-error" : "text-default-500"}>
+          <p className={currentUserLiked ? "text-red-500" : "text-default-500"}>
             {likes.length}
           </p>
           {userId === user?.id && <DeleteIcon onClick={onOpen} />}

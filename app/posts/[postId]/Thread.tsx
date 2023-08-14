@@ -4,6 +4,7 @@ import Header from "./Header";
 import Post from "../Post";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import { Comment as PrismaComment, Like, User } from "@prisma/client";
 
 export default function Thread({
   post,
@@ -11,25 +12,10 @@ export default function Thread({
   post: {
     id: string;
     content: string;
-    user: {
-      id: string;
-      subscriptionStatus: string;
-      name: string;
-      image: string;
-    };
-    createdAt: string;
-    likes: [];
-    comments: {
-      id: string;
-      user: {
-        id: string;
-        subscriptionStatus: string;
-        name: string;
-        image: string;
-      };
-      createdAt: string;
-      content: string;
-    }[];
+    user: User;
+    createdAt: Date;
+    likes: Like[];
+    comments: (PrismaComment & { user: User })[];
   };
 }) {
   return (

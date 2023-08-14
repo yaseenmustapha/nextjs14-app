@@ -55,11 +55,11 @@ export default function Comment({
   content,
 }: {
   userId: string;
-  subscriptionStatus: string;
+  subscriptionStatus: string | null;
   id: string;
-  name: string;
-  avatar: string;
-  createdAt: string;
+  name: string | null;
+  avatar: string | null;
+  createdAt: Date;
   content: string;
 }) {
   const { data: session } = useSession();
@@ -121,14 +121,14 @@ export default function Comment({
               className="font-bold text-xs py-1 px-2"
             >
               <Avatar
-                src={avatar}
+                src={avatar || undefined}
                 color="primary"
                 isBordered={userId === user?.id}
               />
             </Badge>
           ) : (
             <Avatar
-              src={avatar}
+              src={avatar || undefined}
               color="primary"
               isBordered={userId === user?.id}
             />
@@ -137,7 +137,7 @@ export default function Comment({
           <div className="pl-4">
             <div className="font-bold">{name}</div>
             <div className="text-small text-default-500">
-              {formatDate(createdAt)}
+              {formatDate(createdAt.toISOString())}
             </div>
           </div>
         </CardHeader>

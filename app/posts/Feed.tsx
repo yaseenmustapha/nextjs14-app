@@ -1,24 +1,20 @@
 "use client";
 import { Spacer } from "@nextui-org/react";
+import { Comment, Like, User } from "@prisma/client";
 import AddPost from "./AddPost";
 import Header from "./Header";
 import Post from "./Post";
 
 export default function Feed({
-  data,
+  posts,
 }: {
-  data: {
+  posts: {
     id: string;
     content: string;
-    user: {
-      id: string;
-      subscriptionStatus: string;
-      name: string;
-      image: string;
-    };
-    createdAt: string;
-    likes: [];
-    comments: [];
+    user: User;
+    createdAt: Date;
+    likes: Like[];
+    comments: Comment[];
   }[];
 }) {
   return (
@@ -28,7 +24,7 @@ export default function Feed({
         <Header />
         <AddPost />
 
-        {data?.map((post) => (
+        {posts?.map((post) => (
           <Post
             key={post.id}
             id={post.id}
