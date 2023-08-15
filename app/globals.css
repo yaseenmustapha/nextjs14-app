@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.nextui-button-text {
-  z-index: 0 !important;
+body {
+  overflow-y: scroll;
 }
