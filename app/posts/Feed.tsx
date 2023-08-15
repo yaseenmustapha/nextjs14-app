@@ -12,9 +12,14 @@ export default function Feed({
     id: string;
     content: string;
     user: User;
-    createdAt: Date;
+    createdAt: string;
     likes: Like[];
-    comments: Comment[];
+    comments: {
+      id: string;
+      user: User;
+      createdAt: string;
+      content: string;
+    }[];
   }[];
 }) {
   return (
