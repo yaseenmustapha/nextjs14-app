@@ -20,7 +20,8 @@ Live demo is up at [nextjs13.app](https://www.nextjs13.app)
 - OAuth 2.0 Authentication through Google, GitHub, and Discord using **NextAuth.js**
 - ORM using **Prisma**
 - PostgreSQL Database on **Railway**
-- UI Components built using **NextUI** (**TailwindCSS** integration in progress)
+- UI Components built using **NextUI v2.0**
+- Styled using **Tailwind CSS**
 - Dark mode using **next-themes**
 - Payments using **Stripe**
 - Written in **TypeScript**
