@@ -20,7 +20,7 @@ import {
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { Comment, Like } from "@prisma/client";
+import { Comment, Like, User } from "@prisma/client";
 
 const HeartIcon = ({ fill, onClick }: { fill: boolean; onClick: Function }) => {
   const [hover, setHover] = useState(false);
@@ -88,10 +88,15 @@ export default function Post({
   subscriptionStatus: string | null;
   name: string | null;
   avatar: string | null;
-  createdAt: Date;
+  createdAt: string;
   content: string;
   likes: Like[];
-  comments: Comment[];
+  comments: {
+    id: string;
+    user: User;
+    createdAt: string;
+    content: string;
+  }[];
 }) {
   const { data: session } = useSession();
   const { user } = session || {};
@@ -193,7 +198,7 @@ export default function Post({
           <div className="pl-4">
             <div className="font-bold">{name}</div>
             <div className="text-small text-default-500">
-              {formatDate(createdAt.toISOString())}
+              {formatDate(createdAt)}
             </div>
           </div>
         </CardHeader>

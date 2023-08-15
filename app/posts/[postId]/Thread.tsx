@@ -13,9 +13,14 @@ export default function Thread({
     id: string;
     content: string;
     user: User;
-    createdAt: Date;
+    createdAt: string;
     likes: Like[];
-    comments: (PrismaComment & { user: User })[];
+    comments: {
+      id: string;
+      user: User;
+      createdAt: string;
+      content: string;
+    }[];
   };
 }) {
   return (

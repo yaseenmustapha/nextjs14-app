@@ -59,7 +59,7 @@ export default function Comment({
   id: string;
   name: string | null;
   avatar: string | null;
-  createdAt: Date;
+  createdAt: string;
   content: string;
 }) {
   const { data: session } = useSession();
@@ -137,7 +137,7 @@ export default function Comment({
           <div className="pl-4">
             <div className="font-bold">{name}</div>
             <div className="text-small text-default-500">
-              {formatDate(createdAt.toISOString())}
+              {formatDate(createdAt)}
             </div>
           </div>
         </CardHeader>
