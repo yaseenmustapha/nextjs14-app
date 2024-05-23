@@ -94,7 +94,7 @@ export default function AddPost(): JSX.Element {
   return (
     <form onSubmit={handleSubmit} style={{ width: "100%" }}>
       <Textarea
-        validationState={error ? "invalid" : "valid"}
+        isInvalid={error}
         errorMessage={error && errorMessage}
         className="mt-6"
         size="lg"
@@ -109,23 +109,16 @@ export default function AddPost(): JSX.Element {
       />
       <Spacer y={0.5} />
       <div className="row flex-wrap flex items-center">
-        <Popover isOpen={error} onOpenChange={setError} placement="right">
-          <PopoverTrigger>
-            <Button
-              className="font-medium"
-              color="primary"
-              type="submit"
-              isDisabled={!session || enhancing}
-              // auto
-              style={{ minWidth: "100px" }}
-            >
-              {loading ? <Spinner size="sm" /> : "Post"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <p className="p-2">{errorMessage}</p>
-          </PopoverContent>
-        </Popover>
+        <Button
+          className="font-medium"
+          color="primary"
+          type="submit"
+          isDisabled={!session || enhancing}
+          // auto
+          style={{ minWidth: "100px" }}
+        >
+          {loading ? <Spinner size="sm" /> : "Post"}
+        </Button>
 
         <Popover
           isOpen={enhanceError}
