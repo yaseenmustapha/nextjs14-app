@@ -167,13 +167,13 @@ export default function Comment({
                 </p>
               </ModalHeader>
               <ModalFooter>
-                <Button variant="flat" onPress={onClose}>
+                <Button variant="flat" onClick={onClose}>
                   Cancel
                 </Button>
                 <Button
                   className="font-medium"
                   color="danger"
-                  onPress={() => deleteComment(id, onClose)}
+                  onClick={() => deleteComment(id, onClose)}
                 >
                   {deleteLoading ? <Spinner size="sm" /> : "Delete"}
                 </Button>

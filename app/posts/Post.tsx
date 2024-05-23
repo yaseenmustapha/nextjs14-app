@@ -244,10 +244,10 @@ export default function Post({
                 </p>
               </ModalHeader>
               <ModalFooter>
-                <Button variant="flat" onPress={onClose}>
+                <Button variant="flat" onClick={onClose}>
                   Cancel
                 </Button>
-                <Button color="danger" onPress={() => deletePost(id, onClose)}>
+                <Button color="danger" onClick={() => deletePost(id, onClose)}>
                   {deleteLoading ? <Spinner size="sm" /> : "Delete"}
                 </Button>
               </ModalFooter>

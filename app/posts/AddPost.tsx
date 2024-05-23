@@ -137,7 +137,7 @@ export default function AddPost(): JSX.Element {
               // color="gradient"
               isDisabled={!session || enhancing}
               style={{ marginLeft: 10, minWidth: "150px" }}
-              onPress={enhanceWithAI}
+              onClick={enhanceWithAI}
               // auto
               // shadow
               className="font-medium bg-gradient-to-r from-pink-700 to-purple-600 text-white shadow-lg"
