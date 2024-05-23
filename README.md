@@ -50,11 +50,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Database setup
 
-Setup a PostgreSQL database. I recommend using [Supabase](https://supabase.com) as they have a good free tier and is easy to setup.
+1. Setup a PostgreSQL database. I recommend using [Supabase](https://supabase.com) as they have a great free tier and is easy to setup.
 
-Put your database URL in the `.env.local` file under the `DATABASE_URL` key.
+2. Put your database URL in the `.env.local` file under the `DATABASE_URL` key.
 
+3. Run the Prisma migrate script to initialize the schema:
 
+```bash
+npm run migrate:dev
+```
 ## License
 
 Licensed under the [GNU Affero General Public License v3.0](https://github.com/yaseenmustapha/nextjs14-app/blob/main/LICENSE).
