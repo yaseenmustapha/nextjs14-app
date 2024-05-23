@@ -69,7 +69,7 @@ export default function AddComment({
     <form onSubmit={handleSubmit} style={{ width: "100%" }}>
       <Spacer y={0.5} />
       <Textarea
-        validationState={error ? "invalid" : "valid"}
+        isInvalid={error}
         errorMessage={error && errorMessage}
         className="mt-6"
         size="lg"
@@ -84,21 +84,14 @@ export default function AddComment({
       />
       <Spacer y={0.5} />
       <div className="row flex-wrap flex items-center">
-        <Popover isOpen={error} onOpenChange={setError} placement="right">
-          <PopoverTrigger>
-            <Button
-              className="font-medium"
-              color="primary"
-              type="submit"
-              isDisabled={!session}
-            >
-              {loading ? <Spinner size="sm" /> : "Comment"}
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <p className="p-2">{errorMessage}</p>
-          </PopoverContent>
-        </Popover>
+        <Button
+          className="font-medium"
+          color="primary"
+          type="submit"
+          isDisabled={!session}
+        >
+          {loading ? <Spinner size="sm" /> : "Comment"}
+        </Button>
 
         <p className="ml-auto">{(content && content.length) || "0"}/300</p>
       </div>
