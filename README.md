@@ -4,8 +4,10 @@ Live demo is up at [nextjs14-showcase.vercel.app](https://nextjs14-showcase.verc
 
 > **Warning**
 > This app is a work in progress. Site may be unstable.
-
-![Home and Feed pages](https://user-images.githubusercontent.com/26501999/223235925-b2b6c599-cc43-436c-9cd1-f05cfcc454f2.jpg)
+> 
+Home Page (Desktop)         |  Social Media Feed (Mobile)
+:-------------------------:|:-------------------------:
+<img alt="Screenshot 2024-05-22 at 10 10 41 PM" src="https://github.com/yaseenmustapha/nextjs14-app/assets/26501999/5e418f1a-d0a4-4aed-8d00-a873f7d4f73b"> |  ![IMG_0675](https://github.com/yaseenmustapha/nextjs14-app/assets/26501999/8fdb90fb-ceb8-40f5-9730-ac154edbb7d1)
 
 ## Features
 
