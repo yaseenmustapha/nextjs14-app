@@ -95,9 +95,9 @@ export default function HomePage({ numStars }: { numStars: string }) {
     },
     {
       title: "Database",
-      description: "PostgreSQL database deployed on Railway.",
-      footer: "Provision database on Railway",
-      url: "https://railway.app/new",
+      description: "PostgreSQL database deployed on Supabase.",
+      footer: "Provision database on Supabase",
+      url: "https://supabase.com/dashboard",
       svg: (
         <svg
           viewBox="0 0 1024 1024"

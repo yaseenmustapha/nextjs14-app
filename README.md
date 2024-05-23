@@ -19,7 +19,7 @@ Live demo is up at [nextjs14-showcase.vercel.app](https://nextjs14-showcase.verc
 - Enhance social media posts using **OpenAI API** with **GPT-3.5-Turbo** model
 - OAuth 2.0 Authentication through Google, GitHub, and Discord using **NextAuth.js**
 - ORM using **Prisma**
-- PostgreSQL Database on **Railway**
+- PostgreSQL Database on **Supabase**
 - UI Components built using **NextUI v2.0**
 - Styled using **Tailwind CSS**
 - Dark mode using **next-themes**
@@ -45,6 +45,13 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Database setup
+
+Setup a PostgreSQL database. I recommend using [Supabase](https://supabase.com) as they have a good free tier and is easy to setup.
+
+Put your database URL in the `.env.local` file under the `DATABASE_URL` key.
+
 
 ## License
 
