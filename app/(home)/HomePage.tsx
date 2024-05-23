@@ -322,13 +322,13 @@ export default function HomePage({ numStars }: { numStars: string }) {
           <Button
             className="font-medium bg-gradient-to-r from-pink-500 to-yellow-600 text-white shadow-lg"
             onClick={() =>
-              window.open("https://github.com/yaseenmustapha/nextjs13-app")
+              window.open("https://github.com/yaseenmustapha/nextjs14-app")
             }
           >
             Source Code on GitHub
           </Button>
 
-          <Link href="https://github.com/yaseenmustapha/nextjs13-app">
+          <Link href="https://github.com/yaseenmustapha/nextjs14-app">
             <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-pink-500 pr-2">
               {numStars} stars on GitHub
             </p>

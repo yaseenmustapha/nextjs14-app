@@ -57,4 +57,4 @@ Put your database URL in the `.env.local` file under the `DATABASE_URL` key.
 
 ## License
 
-Licensed under the [GNU Affero General Public License v3.0](https://github.com/yaseenmustapha/nextjs13-app/blob/main/LICENSE).
+Licensed under the [GNU Affero General Public License v3.0](https://github.com/yaseenmustapha/nextjs14-app/blob/main/LICENSE).
