@@ -19,9 +19,9 @@ export default function HomePage({ numStars }: { numStars: string }) {
 
   const cardItems = [
     {
-      title: "Next.js 13",
+      title: "Next.js 14",
       description: "App directory, routing, layouts, and API routes.",
-      footer: "Next.js 13 Beta documentation",
+      footer: "Next.js 14 documentation",
       url: "https://beta.nextjs.org/docs",
       svg: (
         <svg viewBox="0 0 24 24" style={{ height: 32 }}>
@@ -283,7 +283,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
           Welcome{user && `, ${user.name}`}!
         </h1>
         <h2 className="text-2xl font-medium">
-          This is an app built to showcase the capabilities of Next.js 13.
+          This is an app built to showcase the capabilities of Next.js 14.
         </h2>
 
         <Spacer y={1} />

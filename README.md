@@ -1,6 +1,6 @@
-This is an app built to showcase the capabilities of [Next.js 13](https://beta.nextjs.org/docs).
+This is an app built to showcase the capabilities of [Next.js 14](https://nextjs.org/docs).
 
-Live demo is up at [nextjs13.app](https://www.nextjs13.app)
+Live demo is up at [nextjs14-showcase.vercel.app](https://nextjs14-showcase.vercel.app)
 
 > **Warning**
 > This app is a work in progress. Site may be unstable.
@@ -9,7 +9,7 @@ Live demo is up at [nextjs13.app](https://www.nextjs13.app)
 
 ## Features
 
-- Using new **Next.js 13 Beta**
+- Using new **Next.js 14**
 - New `/app` dir,
 - Routing, Layouts, Nested Layouts and Layout Groups
 - Data Fetching, Caching and Mutation

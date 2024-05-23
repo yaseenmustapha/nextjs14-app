@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Feed | Next.js 13 Demo App",
+  title: "Feed | Next.js 14 Showcase",
 };
 
 export default function SubscribeLayout({

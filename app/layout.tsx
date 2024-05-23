@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import "./globals.css";
 
 export const metadata = {
-  title: "Next.js 13 Demo App",
+  title: "Next.js 14 Showcase",
   description: "Created by Yaseen Mustapha",
   keywords: [
     "Next.js",

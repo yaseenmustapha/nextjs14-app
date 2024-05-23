@@ -81,7 +81,7 @@ export default function Nav() {
             />
           </svg>
           <p className="font-bold text-inherit hidden sm:flex pl-4">
-            Next.js 13 Demo App
+            Next.js 14 Showcase
           </p>
         </NavbarBrand>
       </NavbarContent>
